@@ -36,9 +36,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  cartItems.addEventListener("click", (e) => {
+    if(e.target.tagName === "BUTTON"){
+      const removeProductId = parseInt(e.target.getAttribute("data-id"));
+
+      const removeIndex = cart.find((p) => p.id === removeProductId);
+      if(removeIndex !== -1){
+        removeItem(removeIndex);
+      }
+    }
+  })
+
   // Add product to cart
   function addToCart(product) {
     cart.push(product);
+    renderCart();
+  }
+
+  function removeItem(removeIndex) {
+    cart.splice(removeIndex, 1);
     renderCart();
   }
 
@@ -59,7 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const cartItem = document.createElement("div");
         cartItem.classList.add("cart-item");
 
-        cartItem.innerText = `${item.name} - $${item.price.toFixed(2)}`;
+        cartItem.innerHTML = `${item.name} - $${item.price.toFixed(2)}
+        <button data-id="${item.id}">Delete item</button>
+        `;
 
         cartItems.appendChild(cartItem);
       });

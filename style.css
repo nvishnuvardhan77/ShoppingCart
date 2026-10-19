@@ -71,6 +71,10 @@ button:hover {
 .cart-item {
     font-size: 18px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(109, 158, 219, 0.7);
 }
 
 #cart-total {
